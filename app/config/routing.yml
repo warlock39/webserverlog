@@ -1,0 +1,3 @@
+webserverlogs:
+    type: rest
+    resource: "AppBundle\Oro\WebServerLog\Controller\WebServerLogsController"
