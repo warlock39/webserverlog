@@ -27,6 +27,7 @@ Main idea is separate logic into two parts and make it asynchronous:
 Technologies and implementation description
 ===
 Project is implemented on PHP with help of Symfony 2.7 Framework. Next main dependencies is used:
+
 - Doctrine ORM
 - FOSRestBundle
 - kassner/log-parser
@@ -55,6 +56,7 @@ Filter - is something, that allows to filter results by field value with help of
 You can specify only db table field name as filter in config, in this case queryParam property will be equal to
 field name, and operator by default is eq.
 Currently next operators is supported (but easily can be extended):
+
 - eq
 - gt
 - lt
@@ -77,6 +79,7 @@ When file has `*.log` extension but not matches CLF-format, it also skipped. Log
 log lines is not match format regular expression. 
 
 Collector has 3 dependency:
+
 - persistence layer (doctrine EntityManager)
 - LogReader
 - LogParser
@@ -85,6 +88,7 @@ Doctrine is used to cache log lines in MySQL DB. Reading process is in batch: wh
 data will be flushed. 
 
 LogReader is custom component that allows:
+
 - read file backwards
 - read really huge log files thanks to PHP Generators
 
@@ -102,9 +106,10 @@ LogParser is external part (kassner/log-parser) that parses each log line that h
 
 Installation
 ===
-- chmod 777 app/cache
-- chmod 777 app/logs
-- edit app/config/parameters.yml
+
+- `$ chmod 777 app/cache`
+- `$ chmod 777 app/logs`
+- edit `app/config/parameters.yml`
 
 Usage and examples
 ===
@@ -116,7 +121,8 @@ not indeed to use in production as is.
 To start log collecting, run following console command:
 `app/console logs-collector [logDir] [--keepMax=1 day]`
 There are 1 optional argument and 1 option:
-- logDir, self descriptive, absolute filesystem path (ex. `/var/log/access_log`)
+
+- logDir, self descriptive, absolute filesystem path (ex. `/var/log/access_log`), by default `app/logs`
 - keepMax=1 day; max date range when collector should collect log entries. In other words it is cache expire time
 
 When there are no log entries anymore, collector exists. So you should run this command periodically, by unix cron for example
@@ -155,6 +161,7 @@ Get /logs?textRegex[]=[0-9]{3}&textRegex[]=jq[a-z]+js
 
 TODO
 ===
+
 1. Add logging
 2. Add more verbose messages
 3. Add authentication
@@ -168,6 +175,7 @@ TODO
 
 Prerequisites
 ===
+
 - project based on symfony installer 
 - symfony is not production configured
 - no http-caching
