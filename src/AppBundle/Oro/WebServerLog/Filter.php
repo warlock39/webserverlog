@@ -71,6 +71,7 @@ class Filter
      */
     private function matchOperator(QueryBuilder $qb, $field, $operator, $value, $i = 0)
     {
+        // TODO expose operators logic into methods, or use appropriate design pattern
         switch ($operator) {
             case 'eq':
             case 'gt':
@@ -117,7 +118,7 @@ class Filter
 
         foreach ($value as $item) {
             if (!is_string($item)) {
-                throw WebServerLogException::oneDimensionValue($this->fieldName);
+                throw WebServerLogException::oneDimensionName($this->fieldName);
             }
         }
         $this->value = $value;

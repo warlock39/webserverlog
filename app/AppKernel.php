@@ -5,6 +5,17 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 
 class AppKernel extends Kernel
 {
+    /**
+     * Constructor.
+     *
+     * @param string $environment The environment
+     * @param bool   $debug       Whether to enable debugging or not
+     */
+    public function __construct($environment, $debug)
+    {
+        date_default_timezone_set('Europe/Kiev');
+        parent::__construct($environment, $debug);
+    }
     public function registerBundles()
     {
         $bundles = array(
@@ -18,8 +29,8 @@ class AppKernel extends Kernel
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
-            $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
-            $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
+//            $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
+//            $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
         }
 
         return $bundles;

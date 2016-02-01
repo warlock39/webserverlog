@@ -2,9 +2,12 @@
 
 namespace AppBundle\Oro\WebServerLog\EventListener;
 
+use AppBundle\Oro\WebServerLog\Controller\FiltersAwareController;
+use AppBundle\Oro\WebServerLog\Exception\WebServerLogException;
 use AppBundle\Oro\WebServerLog\FiltersFactory;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -26,15 +29,26 @@ class FilterListener implements EventSubscriberInterface
     }
     /**
      * @param FilterControllerEvent $event A FilterControllerEvent instance
+     * @throws BadRequestHttpException
      * @throws \InvalidArgumentException
      */
     public function onKernelController(FilterControllerEvent $event)
     {
         $request = $event->getRequest();
-        $filters = $this->container->getParameter('app.webserverlog_controller')['filters'];
+        $controller = $event->getController();
 
-        $factory = new FiltersFactory($filters);
-        $filters = $factory->createFiltersFromRequest($request); // there is no relation with controller. bad
+        // TODO can $controller be not array-callable?
+        if (!$controller[0] instanceof FiltersAwareController) {
+            return;
+        }
+
+        $factory = new FiltersFactory($controller[0]->getFiltersConfig());
+        try {
+            $filters = $factory->createFiltersFromRequest($request);
+        } catch (WebServerLogException $e) {
+            // TODO may be use BadRequestHttpException inside FiltersFactory?
+            throw new BadRequestHttpException($e->getMessage());
+        }
 
         $request->attributes->set('_filters', $filters);
     }

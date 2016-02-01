@@ -2,6 +2,7 @@
 
 namespace AppBundle\Oro\WebServerLog;
 
+use AppBundle\Oro\WebServerLog\Exception\WebServerLogException;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -48,6 +49,8 @@ class FiltersFactory
     /**
      * @param string       $name
      * @param string|array $value
+     *
+     * @throws WebServerLogException
      *
      * @return Filter|bool
      */

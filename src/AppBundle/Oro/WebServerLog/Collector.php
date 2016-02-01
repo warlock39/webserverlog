@@ -33,6 +33,7 @@ class Collector
     private $consecutiveInvalid = 0;
 
     /**
+     * TODO configure as external parameter
      * @var int How many consecutive invalid log entries should we read when format considered invalid
      */
     private $invalidLogsThreshold = 20;
@@ -62,11 +63,12 @@ class Collector
     public function collectDir($logDir, \DateTime $until = null)
     {
         $stat = [];
-        foreach ($this->reader->readDir($logDir) as $fileRows) {
+        /** @var $file \SplFileInfo */
+        foreach ($this->reader->readDir($logDir) as $file => $fileRows) {
             try {
-                $stat[] = $this->collectFile($fileRows, $until);
+                $stat[$file->getFilename()] = $this->collectFile($fileRows, $until);
             } catch (FormatException $e) {
-                continue;
+                $stat[$file->getFilename()] = $e->getMessage();
             }
         }
 
@@ -87,8 +89,9 @@ class Collector
             'proceed' => 0,
             'succeed' => 0
         ];
+        // TODO make it configurable
         $batchSize = 100;
-        $this->consecutiveInvalid = 0;
+        $this->consecutiveInvalid = 0; // TODO there is no place for that
 
         foreach ($fileRows as $row) {
             $stat['proceed']++;
@@ -151,7 +154,6 @@ class Collector
         if (!$until instanceof \DateTime) {
             return true;
         }
-        $until->setTimezone($logEntry->getDatetime()->getTimezone());
 
         return $logEntry->getDatetime() > $until;
     }
@@ -168,7 +170,7 @@ class Collector
         } catch (FormatException $e) {
             return false;
         }
-        $format = 'd/M/Y:H:i:s O';
+        $format = 'd/M/Y:H:i:s O'; // TODO hard code
 
         $logEntry = new LogEntry();
         $logEntry->setDatetime(\DateTime::createFromFormat($format, $parsed->time));
@@ -177,12 +179,12 @@ class Collector
         return $logEntry;
     }
 
-
     /**
      * @param LogParser $parser
      */
     private function setParser($parser)
     {
+        // TODO set format as dependency
         $parser->setFormat('%h %l %u %t "%r" %>s %b');
         $this->parser = $parser;
     }

@@ -21,7 +21,7 @@ class Reader
     {
         foreach ($this->getDirFiles($logDir) as $file) {
             try {
-                yield $this->readFile($file);
+                yield $file => $this->readFile($file);
             } catch (WebServerLogException $e) {
                 continue;
             }
@@ -76,8 +76,9 @@ class Reader
 
     /**
      * @param \SplFileInfo|string $file
-     *
+     * @return bool
      * @throws WebServerLogException
+     * TODO one of cases that produces PHP segfault (php bug)
      */
     private function assertValidFile($file)
     {
@@ -103,7 +104,7 @@ class Reader
     {
         $finder = new Finder();
         $finder->ignoreDotFiles(true)->ignoreVCS(true);
-        $finder->files()->in($logDir);
+        $finder->files()->in($logDir)->name('*.log');
 
         return $finder;
     }

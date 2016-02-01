@@ -52,9 +52,9 @@ class LogEntryRepository extends EntityRepository
      * @param \DateTime $dateTime
      * @return mixed
      */
-    public function deleteGreaterThan(\DateTime $dateTime)
+    public function deleteLessThan(\DateTime $dateTime)
     {
-        $dql = 'DELETE FROM \AppBundle\Oro\WebServerLog\Model\LogEntry l where l.datetime > :datetime';
+        $dql = 'DELETE FROM \AppBundle\Oro\WebServerLog\Model\LogEntry l where l.datetime < :datetime';
         $q = $this->_em->createQuery($dql);
 
         return $q->execute([

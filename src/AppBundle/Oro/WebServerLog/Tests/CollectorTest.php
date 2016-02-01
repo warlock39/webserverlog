@@ -9,11 +9,6 @@ class CollectorTest extends \PHPUnit_Framework_TestCase
 
     public function testCreate()
     {
-        $this->assertInstanceOf('Oro\WebServerLog\Collector', new Collector());
-    }
-
-    public function testConstructor()
-    {
         $this->markTestIncomplete();
     }
 
@@ -26,4 +21,40 @@ class CollectorTest extends \PHPUnit_Framework_TestCase
     {
         $this->markTestIncomplete();
     }
+
+    public function testConsecutiveInvalidLogEntries()
+    {
+        $this->markTestIncomplete();
+    }
+
+    public function testInvalidLogsThreshold()
+    {
+        $this->markTestIncomplete();
+    }
+
+    public function testConsecutiveInvalidLogEntriesDifferentLogFiles()
+    {
+        $this->markTestIncomplete();
+    }
+
+    public function testCollectDirSkipInvalidLogFormatFile()
+    {
+        $this->markTestIncomplete();
+    }
+
+    public function testProceedLogsStat()
+    {
+        $this->markTestIncomplete();
+    }
+
+    public function testSucceedLogsStat()
+    {
+        $this->markTestIncomplete();
+    }
+
+    public function testSkipInvalidLogEntry()
+    {
+        $this->markTestIncomplete();
+    }
 }
+

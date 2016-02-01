@@ -16,7 +16,7 @@ use FOS\RestBundle\Controller\FOSRestController;
 /**
  * Class WebServerLogsController.
  */
-class WebServerLogsController extends FOSRestController
+class WebServerLogsController extends FOSRestController implements FiltersAwareController
 {
     /**
      * @var LogEntryRepository
@@ -45,9 +45,11 @@ class WebServerLogsController extends FOSRestController
         $offset = $request->get('offset');
         $filters = $request->attributes->get('_filters', []);
 
-        $logs = $this->getRepo()->getLogsByFilters($filters, $limit, $offset);
-
-        return new JsonResponse($logs);
+        return $this->handleView(
+            $this->view(
+                $this->getRepo()->getLogsByFilters($filters, $limit, $offset)
+            )
+        );
     }
 
     /**
@@ -62,4 +64,14 @@ class WebServerLogsController extends FOSRestController
         return $this->repo;
     }
 
+    /**
+     * @return array
+     * @throws \InvalidArgumentException
+     */
+    public function getFiltersConfig()
+    {
+        $controllerParams = $this->container->getParameter('app.webserverlog_controller');
+
+        return isset($controllerParams['filters']) ? $controllerParams['filters'] : [];
+    }
 }

@@ -22,3 +22,8 @@ services:
 
     app.webserverlog.parser:
         class: Kassner\LogParser\LogParser
+
+    app.webserverlog.normalizer:
+        class: AppBundle\Oro\WebServerLog\Serializer\LogEntryNormalizer
+        tags:
+            - { name: serializer.normalizer }

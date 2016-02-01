@@ -51,10 +51,10 @@ class WebServerLogException extends \Exception
      * @param string $name
      * @return WebServerLogException
      */
-    public static function oneDimensionValue($name)
+    public static function oneDimensionName($name)
     {
         $nameStr = self::toString($name);
-        return new self('Filter "'.$nameStr.'" must have only one dimension value"');
+        return new self('Filter "'.$nameStr.'" must have only one dimension filter name"');
     }
 
     /**

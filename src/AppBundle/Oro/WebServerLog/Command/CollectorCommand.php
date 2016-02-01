@@ -5,7 +5,6 @@ namespace AppBundle\Oro\WebServerLog\Command;
 use AppBundle\Oro\WebServerLog\Collector;
 use AppBundle\Oro\WebServerLog\Model\LogEntry;
 
-use Doctrine\Bundle\DoctrineBundle\Registry as Doctrine;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -30,6 +29,8 @@ class CollectorCommand extends Command
      * @param string $defaultLogDif
      *
      * @throws \LogicException
+     *
+     * TODO non-consistent constructor signature
      */
     public function __construct(EntityManager $entityManager, Collector $collector, $defaultLogDif = '')
     {
@@ -67,10 +68,12 @@ class CollectorCommand extends Command
 
         $keepMax = $input->getOption('keepMax');
 
-        ini_set('display_errors', 1);
+        // TODO expose into service
         $this->deleteExpiredLogs($keepMax);
         $stat = $this->collector->collectDir($logDir, $until = $this->getLastLogUpdate($keepMax));
-        echo "<pre>" . print_r($stat, true) . "</pre>";
+
+        // TODO add more verbose messages and logging
+        $output->write(json_encode($stat, JSON_PRETTY_PRINT));
     }
 
     /**
@@ -78,7 +81,7 @@ class CollectorCommand extends Command
      */
     private function deleteExpiredLogs($keepMax)
     {
-        $this->getLogEntryRepository()->deleteGreaterThan($this->getLastActualLogDate($keepMax));
+        $this->getLogEntryRepository()->deleteLessThan($this->getLastActualLogDate($keepMax));
     }
 
     /**
