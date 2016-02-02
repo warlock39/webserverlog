@@ -1,14 +1,17 @@
 <?php
 
-namespace Oro\WebServerLog\Tests;
+namespace AppBundle\Oro\WebServerLog\Tests;
 
-use Oro\WebServerLog\Reader;
+use AppBundle\Oro\WebServerLog\Reader;
 
+/**
+ * Class ReaderTest.
+ */
 class ReaderTest extends \PHPUnit_Framework_TestCase
 {
     public function testCreate()
     {
-        $this->assertInstanceOf('Oro\WebServerLog\Reader', new Reader);
+        $this->assertInstanceOf('\AppBundle\Oro\WebServerLog\Reader', new Reader());
     }
 
     public function testReadEmptyDir()
@@ -28,22 +31,11 @@ class ReaderTest extends \PHPUnit_Framework_TestCase
 
         $records = $reader->readDir($this->dir('logs'));
 
-        $this->assertGreaterThan(0, count(iterator_to_array($records)));
+        $this->assertGreaterThan(0, count(iterator_to_array($records, false)));
     }
 
     /**
-     * @expectedException \Oro\WebServerLog\Exception\WebServerLogException
-     */
-    public function testIsNotReadableFile()
-    {
-        $reader = new Reader();
-        $records = $reader->readFile($this->fileInfo('logs/notReadable.log'));
-
-        iterator_to_array($records);
-    }
-
-    /**
-     * @expectedException \Oro\WebServerLog\Exception\WebServerLogException
+     * @expectedException \AppBundle\Oro\WebServerLog\Exception\WebServerLogException
      */
     public function testIsNotLogFile()
     {
@@ -61,21 +53,38 @@ class ReaderTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(0, iterator_to_array($records));
     }
 
+    /**
+     * @param string $dirName
+     * @return string
+     */
     private function dir($dirName)
     {
         return $this->getFixturesPath().$dirName;
     }
 
+    /**
+     * @param string $fileName
+     * @return string
+     */
     private function file($fileName)
     {
         return $this->getFixturesPath().$fileName;
     }
 
+    /**
+     * Create file with specified name
+     *
+     * @param string $fileName
+     * @return \SplFileInfo
+     */
     private function fileInfo($fileName)
     {
         return new \SplFileInfo($this->file(str_replace('/', DIRECTORY_SEPARATOR, $fileName)));
     }
 
+    /**
+     * @return string
+     */
     private function getFixturesPath()
     {
         return __DIR__.DIRECTORY_SEPARATOR.'Fixtures'.DIRECTORY_SEPARATOR;
