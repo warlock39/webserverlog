@@ -1,3 +1,5 @@
+# Web Server Log
+
 Implementation of Simple REST API that provides unified access to multiple log files on the server
 
 Requirenments
