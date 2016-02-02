@@ -1,11 +1,11 @@
 <?php
 
-namespace AppBundle\Oro\WebServerLog;
+namespace AppBundle\WebServerLog;
 
 use Doctrine\ORM\EntityManager;
 use Kassner\LogParser\FormatException;
 use Kassner\LogParser\LogParser;
-use AppBundle\Oro\WebServerLog\Model\LogEntry;
+use AppBundle\WebServerLog\Model\LogEntry;
 
 /**
  * Class Collector.

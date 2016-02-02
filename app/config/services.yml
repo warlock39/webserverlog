@@ -2,28 +2,28 @@
 
 services:
     app.webserverlog.filters_listener:
-        class: AppBundle\Oro\WebServerLog\EventListener\FilterListener
+        class: AppBundle\WebServerLog\EventListener\FilterListener
         arguments: ['@service_container']
         tags:
             - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
 
     app.webserverlog.command.collector_command:
-        class: AppBundle\Oro\WebServerLog\Command\CollectorCommand
+        class: AppBundle\WebServerLog\Command\CollectorCommand
         arguments: ['@doctrine.orm.entity_manager', '@app.webserverlog.collector', '%kernel.logs_dir%']
         tags:
             - { name: console.command }
 
     app.webserverlog.collector:
-        class: AppBundle\Oro\WebserverLog\Collector
+        class: AppBundle\WebserverLog\Collector
         arguments: ['@doctrine.orm.entity_manager', '@app.webserverlog.reader', '@app.webserverlog.parser']
 
     app.webserverlog.reader:
-        class: AppBundle\Oro\WebserverLog\Reader
+        class: AppBundle\WebserverLog\Reader
 
     app.webserverlog.parser:
         class: Kassner\LogParser\LogParser
 
     app.webserverlog.normalizer:
-        class: AppBundle\Oro\WebServerLog\Serializer\LogEntryNormalizer
+        class: AppBundle\WebServerLog\Serializer\LogEntryNormalizer
         tags:
             - { name: serializer.normalizer }

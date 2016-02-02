@@ -1,9 +1,9 @@
 <?php
 
-namespace AppBundle\Oro\WebServerLog\Command;
+namespace AppBundle\WebServerLog\Command;
 
-use AppBundle\Oro\WebServerLog\Collector;
-use AppBundle\Oro\WebServerLog\Model\LogEntry;
+use AppBundle\WebServerLog\Collector;
+use AppBundle\WebServerLog\Model\LogEntry;
 
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Console\Command\Command;
@@ -113,7 +113,7 @@ class CollectorCommand extends Command
 
 
     /**
-     * @return \AppBundle\Oro\WebServerLog\Model\LogEntryRepository
+     * @return \AppBundle\WebServerLog\Model\LogEntryRepository
      */
     private function getLogEntryRepository()
     {

@@ -1,8 +1,8 @@
 <?php
 
-namespace AppBundle\Oro\WebServerLog\Tests;
+namespace AppBundle\WebServerLog\Tests;
 
-use AppBundle\Oro\WebServerLog\Reader;
+use AppBundle\WebServerLog\Reader;
 
 /**
  * Class ReaderTest.
@@ -11,7 +11,7 @@ class ReaderTest extends \PHPUnit_Framework_TestCase
 {
     public function testCreate()
     {
-        $this->assertInstanceOf('\AppBundle\Oro\WebServerLog\Reader', new Reader());
+        $this->assertInstanceOf('\AppBundle\WebServerLog\Reader', new Reader());
     }
 
     public function testReadEmptyDir()
@@ -35,7 +35,7 @@ class ReaderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \AppBundle\Oro\WebServerLog\Exception\WebServerLogException
+     * @expectedException \AppBundle\WebServerLog\Exception\WebServerLogException
      */
     public function testIsNotLogFile()
     {

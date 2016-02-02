@@ -1,9 +1,9 @@
 <?php
 
-namespace AppBundle\Oro\WebServerLog;
+namespace AppBundle\WebServerLog;
 
 use Doctrine\ORM\QueryBuilder;
-use AppBundle\Oro\WebServerLog\Exception\WebServerLogException;
+use AppBundle\WebServerLog\Exception\WebServerLogException;
 
 /**
  * Class Filter.

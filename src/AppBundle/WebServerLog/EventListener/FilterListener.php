@@ -1,10 +1,10 @@
 <?php
 
-namespace AppBundle\Oro\WebServerLog\EventListener;
+namespace AppBundle\WebServerLog\EventListener;
 
-use AppBundle\Oro\WebServerLog\Controller\FiltersAwareController;
-use AppBundle\Oro\WebServerLog\Exception\WebServerLogException;
-use AppBundle\Oro\WebServerLog\FiltersFactory;
+use AppBundle\WebServerLog\Controller\FiltersAwareController;
+use AppBundle\WebServerLog\Exception\WebServerLogException;
+use AppBundle\WebServerLog\FiltersFactory;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;

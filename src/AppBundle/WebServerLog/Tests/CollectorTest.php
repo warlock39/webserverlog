@@ -1,10 +1,10 @@
 <?php
 
-namespace AppBundle\Oro\WebServerLog\Tests;
+namespace AppBundle\WebServerLog\Tests;
 
-use AppBundle\Oro\WebServerLog\Collector;
-use AppBundle\Oro\WebServerLog\Model\LogEntry;
-use AppBundle\Oro\WebServerLog\Reader;
+use AppBundle\WebServerLog\Collector;
+use AppBundle\WebServerLog\Model\LogEntry;
+use AppBundle\WebServerLog\Reader;
 use Doctrine\ORM\EntityManager;
 use Kassner\LogParser\LogParser;
 use Symfony\Component\Finder\SplFileInfo;

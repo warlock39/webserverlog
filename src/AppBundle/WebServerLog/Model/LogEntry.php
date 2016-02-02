@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Oro\WebServerLog\Model;
+namespace AppBundle\WebServerLog\Model;
 
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping\Table;
 
 /**
  *
- * @Entity(repositoryClass="\AppBundle\Oro\WebServerLog\Model\LogEntryRepository")
+ * @Entity(repositoryClass="\AppBundle\WebServerLog\Model\LogEntryRepository")
  * @Table(name="log_entry", indexes={
  *     @Index(name="datetime", columns={"datetime"})
  * })

@@ -1,10 +1,10 @@
 <?php
 
-namespace AppBundle\Oro\WebServerLog\Model;
+namespace AppBundle\WebServerLog\Model;
 
-use AppBundle\Oro\WebServerLog\Exception\WebServerLogException;
+use AppBundle\WebServerLog\Exception\WebServerLogException;
 use Doctrine\ORM\EntityRepository;
-use AppBundle\Oro\WebServerLog\Filter;
+use AppBundle\WebServerLog\Filter;
 
 /**
  * Class LogEntryRepository.
@@ -43,7 +43,7 @@ class LogEntryRepository extends EntityRepository
      */
     public function getLastLogUpdate()
     {
-        $dql = 'SELECT MAX(l.datetime) FROM \AppBundle\Oro\WebServerLog\Model\LogEntry l ';
+        $dql = 'SELECT MAX(l.datetime) FROM \AppBundle\WebServerLog\Model\LogEntry l ';
 
         return $this->_em->createQuery($dql)->getSingleScalarResult();
     }
@@ -54,7 +54,7 @@ class LogEntryRepository extends EntityRepository
      */
     public function deleteLessThan(\DateTime $dateTime)
     {
-        $dql = 'DELETE FROM \AppBundle\Oro\WebServerLog\Model\LogEntry l where l.datetime < :datetime';
+        $dql = 'DELETE FROM \AppBundle\WebServerLog\Model\LogEntry l where l.datetime < :datetime';
         $q = $this->_em->createQuery($dql);
 
         return $q->execute([

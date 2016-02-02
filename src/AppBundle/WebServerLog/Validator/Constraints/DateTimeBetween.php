@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Oro\WebServerLog\Validator\Constraints;
+namespace AppBundle\WebServerLog\Validator\Constraints;
 
 use Symfony\Component\Validator\Constraint;
 

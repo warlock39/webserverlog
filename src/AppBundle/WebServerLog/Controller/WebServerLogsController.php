@@ -1,10 +1,10 @@
 <?php
 
-namespace AppBundle\Oro\WebServerLog\Controller;
+namespace AppBundle\WebServerLog\Controller;
 
-use AppBundle\Oro\WebServerLog\Model\LogEntry;
-use AppBundle\Oro\WebServerLog\Model\LogEntryRepository;
-use AppBundle\Oro\WebServerLog\Validator\Constraints\DateTimeBetween;
+use AppBundle\WebServerLog\Model\LogEntry;
+use AppBundle\WebServerLog\Model\LogEntryRepository;
+use AppBundle\WebServerLog\Validator\Constraints\DateTimeBetween;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;

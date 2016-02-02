@@ -1,8 +1,8 @@
 <?php
 
-namespace AppBundle\Oro\WebServerLog;
+namespace AppBundle\WebServerLog;
 
-use AppBundle\Oro\WebServerLog\Exception\WebServerLogException;
+use AppBundle\WebServerLog\Exception\WebServerLogException;
 use Symfony\Component\Finder\Finder;
 
 /**

@@ -59,7 +59,7 @@ doctrine:
                 type: annotation
                 dir: '%kernel.root_dir%/../src/AppBundle/Oro/WebServerLog/Model'
                 is_bundle: false
-                prefix: AppBundle\Oro\WebServerLog\Model
+                prefix: AppBundle\WebServerLog\Model
 
 fos_rest:
     body_listener: true

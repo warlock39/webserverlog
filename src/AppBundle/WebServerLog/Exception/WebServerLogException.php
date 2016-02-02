@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Oro\WebServerLog\Exception;
+namespace AppBundle\WebServerLog\Exception;
 
 /**
  * Class WebServerLogException.

@@ -1,8 +1,8 @@
 <?php
 
-namespace AppBundle\Oro\WebServerLog\Serializer;
+namespace AppBundle\WebServerLog\Serializer;
 
-use AppBundle\Oro\WebServerLog\Model\LogEntry;
+use AppBundle\WebServerLog\Model\LogEntry;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\SerializerAwareNormalizer;
 

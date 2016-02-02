@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Oro\WebServerLog\Controller;
+namespace AppBundle\WebServerLog\Controller;
 
 /**
  * Interface FiltersAwareController.
