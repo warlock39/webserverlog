@@ -1,5 +1,5 @@
 {
-    "name": "oro.logs",
+    "name": "webserverlogs",
     "license": "proprietary",
     "type": "project",
     "autoload": {

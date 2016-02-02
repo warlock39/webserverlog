@@ -57,7 +57,7 @@ doctrine:
         mappings:
             WebServerLog:
                 type: annotation
-                dir: '%kernel.root_dir%/../src/AppBundle/Oro/WebServerLog/Model'
+                dir: '%kernel.root_dir%/../src/AppBundle/WebServerLog/Model'
                 is_bundle: false
                 prefix: AppBundle\WebServerLog\Model
 
