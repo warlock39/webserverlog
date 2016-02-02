@@ -1,4 +1,5 @@
 # Web Server Log
+[![Code Climate](https://codeclimate.com/github/warlock39/webserverlog/badges/gpa.svg)](https://codeclimate.com/github/warlock39/webserverlog)
 
 Implementation of Simple REST API that provides unified access to multiple log files on the server
 
