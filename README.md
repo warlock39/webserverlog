@@ -19,14 +19,14 @@ Preconditions:
 
 Idea & Algorithm
 =======
-Main idea is separate logic into two parts and make it asynchronous: 
+Main idea is to separate logic into the two parts and make it asynchronous:
 1. REST API that just reads logs from MySQL db. Db acts as cache layer
 2. Console script that reads actual logs and stores them in DB
 
 
-Technologies and implementation description
+Technologies and implementation
 ===
-Project is implemented on PHP with help of Symfony 2.7 Framework. Next main dependencies is used:
+Project is implemented using PHP language and Symfony 2.7 Framework. Main dependencies list is listed below:
 
 - Doctrine ORM
 - FOSRestBundle
@@ -38,8 +38,9 @@ Other parts is implemented by project contributor
 
 ## REST API
 
-Key point of REST API in current project is Filtering mechanism. 
-Filters config should be specified as service parameters in `config.yml`, example configuration:
+Key point of REST API is Filtering mechanism.
+Filters config should be specified as a service parameters in `config.yml,` example configuration:
+
 ```
     app.webserverlog_controller:
         filters:
@@ -52,8 +53,8 @@ Filters config should be specified as service parameters in `config.yml`, exampl
             - { queryParam: until, fieldName: datetime, operator: lt }
 ```
 
-Filter - is something, that allows to filter results by field value with help of different operators. 
-You can specify only db table field name as filter in config, in this case queryParam property will be equal to
+Filter is something that allows to filter results by field value using different operators.
+You can specify only db table field name as a filter in config, in this case queryParam property will be equal to
 field name, and operator by default is eq.
 Currently next operators is supported (but easily can be extended):
 
@@ -90,9 +91,9 @@ data will be flushed.
 LogReader is custom component that allows:
 
 - read file backwards
-- read really huge log files thanks to PHP Generators
+- read really huge log files, thanks to PHP Generators
 
-LogReader reads log file from the end to begin, or from the end until specified datetime. Last case in most frequently used.
+LogReader reads log file from the end to begin or from the end until specified datetime. Last case is most frequently used.
 
 LogReader uses PHP Generators and throws exceptions when it needs. Under certain conditions throwing an exception from
 a generator produces a segfault. We have such conditions and we have segfault. 
@@ -125,7 +126,7 @@ There are 1 optional argument and 1 option:
 - logDir, self descriptive, absolute filesystem path (ex. `/var/log/access_log`), by default `app/logs`
 - keepMax=1 day; max date range when collector should collect log entries. In other words it is cache expire time
 
-When there are no log entries anymore, collector exists. So you should run this command periodically, by unix cron for example
+When there are no log entries anymore, collector exits. So you should run this command periodically, by unix cron for example
 
 ### And several REST API examples:
 Get logs that contains _localhost_ or _example_:
