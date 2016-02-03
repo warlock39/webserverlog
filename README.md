@@ -23,7 +23,8 @@ Preconditions:
 Idea & Algorithm
 =======
 Main idea is to separate logic into the two parts and make it asynchronous:
-1. REST API that just reads logs from MySQL db. Db acts as cache layer
+
+1. REST API that just reads logs from MySQL database. Db acts as cache layer
 2. Console script that reads actual logs and stores them in DB
 
 
@@ -57,8 +58,8 @@ Filters config should be specified as a service parameters in `config.yml,` exam
 ```
 
 Filter is something that allows to filter results by field value using different operators.
-You can specify only db table field name as a filter in config, in this case queryParam property will be equal to
-field name, and operator by default is eq.
+You can specify only db table field name as a filter in config, in this case `queryParam` property will be equal to
+field name, and operator by default is `eq`.
 Currently next operators is supported (but easily can be extended):
 
 - eq
