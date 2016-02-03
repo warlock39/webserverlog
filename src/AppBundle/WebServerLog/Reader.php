@@ -23,6 +23,7 @@ class Reader
             try {
                 yield $file => $this->readFile($file);
             } catch (WebServerLogException $e) {
+                // TODO add logging
                 continue;
             }
         }

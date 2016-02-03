@@ -70,6 +70,7 @@ class WebServerLogsController extends FOSRestController implements FiltersAwareC
      */
     public function getFiltersConfig()
     {
+        // TODO probably it is not the best way to handle filters config
         $controllerParams = $this->container->getParameter('app.webserverlog_controller');
 
         return isset($controllerParams['filters']) ? $controllerParams['filters'] : [];
