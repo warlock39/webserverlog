@@ -25,7 +25,7 @@ class Collector
     /**
      * @var EntityManager
      */
-    protected $em;
+    protected $entityManager;
 
     /**
      * @var int Consecutive invalid log entries
@@ -41,13 +41,13 @@ class Collector
     /**
      * Collector constructor.
      *
-     * @param EntityManager $em
+     * @param EntityManager $entityManager
      * @param Reader        $reader
      * @param LogParser     $parser
      */
-    public function __construct(EntityManager $em, Reader $reader, LogParser $parser)
+    public function __construct(EntityManager $entityManager, Reader $reader, LogParser $parser)
     {
-        $this->em = $em;
+        $this->entityManager = $entityManager;
         $this->reader = $reader;
         $this->setParser($parser);
     }
@@ -106,16 +106,16 @@ class Collector
                 break;
             }
 
-            $this->em->persist($logEntry);
+            $this->entityManager->persist($logEntry);
             $stat['succeed']++;
 
             if ($stat['succeed'] % $batchSize === 0) {
-                $this->em->flush();
-                $this->em->clear();
+                $this->entityManager->flush();
+                $this->entityManager->clear();
             }
         }
-        $this->em->flush();
-        $this->em->clear();
+        $this->entityManager->flush();
+        $this->entityManager->clear();
 
         return $stat;
     }

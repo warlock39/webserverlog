@@ -70,7 +70,7 @@ class CollectorCommand extends Command
 
         // TODO expose into service
         $this->deleteExpiredLogs($keepMax);
-        $stat = $this->collector->collectDir($logDir, $until = $this->getLastLogUpdate($keepMax));
+        $stat = $this->collector->collectDir($logDir, $this->getLastLogUpdate($keepMax));
 
         // TODO add more verbose messages and logging
         $output->write(json_encode($stat, JSON_PRETTY_PRINT));

@@ -33,8 +33,8 @@ class WebServerLogException extends \Exception
      */
     public static function unknownFilterOperator($operator)
     {
-        $op = self::toString($operator);
-        return new self('Unknown filter operator '.($op ? "'$op'" : ''));
+        $stringOperator = self::toString($operator);
+        return new self('Unknown filter operator '.($stringOperator ? "'$stringOperator'" : ''));
     }
 
     /**

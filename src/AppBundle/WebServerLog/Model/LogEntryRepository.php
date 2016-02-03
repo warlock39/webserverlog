@@ -20,22 +20,22 @@ class LogEntryRepository extends EntityRepository
      */
     public function getLogsByFilters(array $filters = [], $limit = null, $offset = null)
     {
-        $qb = $this->createQueryBuilder('l');
+        $builder = $this->createQueryBuilder('l');
 
         foreach ($filters as $filter) {
             if (!$filter instanceof Filter) {
                 continue;
             }
             try {
-                $filter->match($qb);
+                $filter->match($builder);
             } catch (WebServerLogException $e) {
                 continue;
             }
         }
-        $qb->setMaxResults($limit);
-        $qb->setFirstResult($offset);
+        $builder->setMaxResults($limit);
+        $builder->setFirstResult($offset);
 
-        return $qb->getQuery()->getResult();
+        return $builder->getQuery()->getResult();
     }
 
     /**
@@ -55,9 +55,8 @@ class LogEntryRepository extends EntityRepository
     public function deleteLessThan(\DateTime $dateTime)
     {
         $dql = 'DELETE FROM \AppBundle\WebServerLog\Model\LogEntry l where l.datetime < :datetime';
-        $q = $this->_em->createQuery($dql);
 
-        return $q->execute([
+        return $this->_em->createQuery($dql)->execute([
             'datetime' => $dateTime
         ]);
     }

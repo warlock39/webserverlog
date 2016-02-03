@@ -89,7 +89,7 @@ class FiltersFactory
      *
      * @return array
      */
-    private function normalizeConfig($item)
+    protected function normalizeConfig($item)
     {
         if (is_string($item)) {
             $item = [
