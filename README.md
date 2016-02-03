@@ -111,9 +111,17 @@ LogParser is external part (kassner/log-parser) that parses each log line that h
 Installation
 ===
 
+- `$ cd /path/to/project`
+- `$ git clone https://github.com/warlock39/webserverlog.git`
+- `$ cd webserverlog`
 - `$ chmod 777 app/cache`
 - `$ chmod 777 app/logs`
+- `$ curl -sS https://getcomposer.org/installer | php`
+- `$ php composer.phar install`
+- create MySQL database
 - edit `app/config/parameters.yml`
+- `$ php app/console doctrine:schema:update --force`
+- create virtual host, document root needs to be pointed to `/web`
 
 Usage and examples
 ===
@@ -124,12 +132,16 @@ not indeed to use in production as is.
 
 To start log collecting, run following console command:
 `app/console logs-collector [logDir] [--keepMax=1 day]`
+
+> Be aware of PHP Bug with segfault described in REST API section before.
+
 There are 1 optional argument and 1 option:
 
-- logDir, self descriptive, absolute filesystem path (ex. `/var/log/access_log`), by default `app/logs`
-- keepMax=1 day; max date range when collector should collect log entries. In other words it is cache expire time
+- `logDir`, self descriptive, absolute filesystem path (ex. `/var/log/access_log`), by default `app/logs`
+- `keepMax=1 day`, max date range when collector should collect log entries. In other words it is cache expire time
 
 When there are no log entries anymore, collector exits. So you should run this command periodically, by unix cron for example
+
 
 ### And several REST API examples:
 Get logs that contains _localhost_ or _example_:
@@ -160,7 +172,7 @@ GET /logs?limit=50&offset=150
 
 Get logs by even by several regular expression:
 ```
-Get /logs?textRegex[]=[0-9]{3}&textRegex[]=jq[a-z]+js
+GET /logs?textRegex[]=[0-9]{3}&textRegex[]=jq[a-z]+js
 ```
 
 TODO
