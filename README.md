@@ -30,7 +30,7 @@ Main idea is to separate logic into the two parts and make it asynchronous:
 
 Technologies and implementation
 ===
-Project is implemented using PHP language and Symfony 2.7 Framework. Main dependencies list is listed below:
+Project is implemented using PHP 5.6 language and Symfony 2.7 Framework. Main dependencies list is listed below:
 
 - Doctrine ORM
 - FOSRestBundle

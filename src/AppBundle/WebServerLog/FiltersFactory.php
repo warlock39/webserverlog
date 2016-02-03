@@ -59,7 +59,7 @@ class FiltersFactory
         if (!is_string($name)) {
             return false;
         }
-        // such filter doest no supported
+        // such filter is not supported
         if (!array_key_exists($name, $this->filtersConfig)) {
             return false;
         }
