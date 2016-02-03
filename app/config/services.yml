@@ -14,11 +14,11 @@ services:
             - { name: console.command }
 
     app.webserverlog.collector:
-        class: AppBundle\WebserverLog\Collector
+        class: AppBundle\WebServerLog\Collector
         arguments: ['@doctrine.orm.entity_manager', '@app.webserverlog.reader', '@app.webserverlog.parser']
 
     app.webserverlog.reader:
-        class: AppBundle\WebserverLog\Reader
+        class: AppBundle\WebServerLog\Reader
 
     app.webserverlog.parser:
         class: Kassner\LogParser\LogParser
